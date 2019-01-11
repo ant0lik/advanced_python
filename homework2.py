@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """This script raises a segmentation fault."""
 import sys
 
