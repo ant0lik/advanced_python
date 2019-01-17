@@ -1,3 +1,4 @@
+"""This script demonstrates synchronization using Lock."""
 from threading import Lock, Thread
 from time import sleep
 
@@ -6,6 +7,7 @@ seq = range(101)
 
 
 def printer(odd):
+    """Print even and odd numbers in sequence."""
     for i in seq:
         with lock:
             if i % 2 == odd:

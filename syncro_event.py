@@ -1,3 +1,4 @@
+"""This script demonstrates synchronization using Event."""
 from threading import Thread, Event
 from time import sleep
 
@@ -7,6 +8,7 @@ odd_nums = (i for i in range(101) if i % 2 != 0)
 
 
 def print_even_nums(ev):
+    """Print even numbers."""
     for i in even_nums:
         print(i)
         ev.set()
@@ -14,6 +16,7 @@ def print_even_nums(ev):
 
 
 def print_odd_nums(ev):
+    """Print odd numbers."""
     for i in odd_nums:
         while not ev.is_set():
             ev.wait(0.21)
