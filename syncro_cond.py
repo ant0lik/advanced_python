@@ -1,5 +1,6 @@
 """This script demonstrates synchronization using Condition."""
-from threading import Thread, Condition
+from threading import Condition
+from threading import Thread
 from time import sleep
 
 cd = Condition()

@@ -1,5 +1,6 @@
 """This script demonstrates synchronization using Semaphore."""
-from threading import Semaphore, Thread
+from threading import Semaphore
+from threading import Thread
 from time import sleep
 
 sem = Semaphore(1)

@@ -1,5 +1,5 @@
 """This script demonstrates synchronization using Timer."""
-from threading import Thread, Timer
+from threading import Timer
 from time import sleep
 
 seq = range(101)

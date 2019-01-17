@@ -1,5 +1,6 @@
 """This script demonstrates synchronization using Event."""
-from threading import Thread, Event
+from threading import Event
+from threading import Thread
 from time import sleep
 
 ev = Event()
