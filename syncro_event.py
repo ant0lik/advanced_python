@@ -20,6 +20,7 @@ def print_odd_nums(ev):
         print(i)
         sleep(0.50)
 
+
 cs = Thread(target=print_even_nums, args=(ev,))
 pd = Thread(target=print_odd_nums, args=(ev,))
 pd.start()
