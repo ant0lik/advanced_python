@@ -1,22 +1,39 @@
 """This script demonstrates synchronization using Semaphore."""
-from threading import Semaphore
-from threading import Thread
-from time import sleep
+import threading
+import time
 
-sem = Semaphore(1)
-seq = range(101)
+seq = list(range(101))
 
 
-def printer(odd):
-    """Print even and odd numbers in sequence."""
-    for i in seq:
-        with sem:
-            if i % 2 == odd:
-                print(i)
-        sleep(0.01)
+def even_nums(ws, rs):
+    """Print the next item from the sequence."""
+    while seq:
+        ws.acquire()
+        item = seq.pop(0)
+        print(item)
+        rs.release()
+    rs.release()
 
 
-t1 = Thread(target=printer, args=(False,))
-t2 = Thread(target=printer, args=(True,))
-t1.start()
-t2.start()
+def odd_nums(ws, rs):
+    """Print the next item from the sequence."""
+    while True:
+        rs.acquire()
+        if not seq:
+            break
+        item = seq.pop(0)
+        print(item)
+        ws.release()
+
+
+even_sem = threading.Semaphore(1)
+odd_sem = threading.Semaphore(0)
+
+et = threading.Thread(name='even_nums',
+                      target=even_nums, args=(even_sem, odd_sem))
+ot = threading.Thread(name='odd_nums',
+                      target=odd_nums, args=(even_sem, odd_sem))
+
+et.start()
+time.sleep(2)
+ot.start()
