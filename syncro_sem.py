@@ -12,7 +12,6 @@ def even_nums(ws, rs):
         item = seq.pop(0)
         print(item)
         rs.release()
-    rs.release()
 
 
 def odd_nums(ws, rs):
