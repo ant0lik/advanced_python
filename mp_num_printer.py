@@ -1,5 +1,6 @@
 """This script prints out numbers from 0 to 100 in order."""
-from multiprocessing import Process, Pipe
+from multiprocessing import Process
+from multiprocessing import Pipe
 
 even = [i for i in range(101) if i % 2 == 0] + ['end']
 odd = [i for i in range(101) if i % 2 != 0] + ['end']
