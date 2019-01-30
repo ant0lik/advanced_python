@@ -3,7 +3,7 @@ import json
 import requests
 
 
-class Money:
+class Money(object):
     """Represent money in various currencies."""
 
     def __init__(self, amount, curr='BYN'):
