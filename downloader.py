@@ -5,7 +5,6 @@ import asyncio
 import async_timeout
 import os
 import requests
-import wget
 from threading import Thread
 from time import time as timer
 
@@ -22,8 +21,9 @@ links = (
 
 
 async def async_download(session, url):
+    """Download asynchronously."""
     async with sem:
-        with async_timeout.timeout(15):
+        with async_timeout.timeout(86):
             async with session.get(url) as response:
                 assert response.status == 200
                 filename = os.path.basename(url)
@@ -37,6 +37,7 @@ async def async_download(session, url):
 
 
 async def main(loop, link):
+    """Run main."""
     async with aiohttp.ClientSession(loop=loop) as session:
         await async_download(session, link)
 

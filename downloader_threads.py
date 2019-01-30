@@ -27,7 +27,7 @@ class DownloadWorker(Thread):
     """Class representing a thread."""
 
     def __init__(self, queue):
-        ""' Initialize a thread."""
+        """Initialize a thread."""
         Thread.__init__(self)
         self.queue = queue
 
