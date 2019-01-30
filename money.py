@@ -40,18 +40,18 @@ class Money:
 
     def __str__(self):
         """Define str representation of the obj."""
-        return f'{round(self.amount, 2)} {self.curr}'
+        return '{} {}'.format(round(self.amount, 2), self.curr)
 
     def __repr__(self):
         """Define str representation of the obj."""
-        return f'{round(self.amount, 2)} {self.curr}'
-        return f'{round(self.amount, 2)} {self.curr}'
+        return '{} {}'.format(round(self.amount, 2), self.curr)
 
     def __to_byn(self):
         """Convert to BYN."""
         if self.curr == 'BYN':
             return self
-        req1 = f'http://www.nbrb.by/API/ExRates/Rates/{self.curr}?ParamMode=2'
+        req1 = 'http://www.nbrb.by/API/ExRates/Rates/{}?ParamMode=2' \
+               .format(self.curr)
         resp = requests.get(req1)
         assert resp.ok
         resp_dct = json.loads(resp.text)
@@ -65,7 +65,8 @@ class Money:
             return self
         if other_curr == 'BYN':
             return self.__to_byn()
-        req = f'http://www.nbrb.by/API/ExRates/Rates/{other_curr}?ParamMode=2'
+        req = 'http://www.nbrb.by/API/ExRates/Rates/{}?ParamMode=2' \
+              .format(other_curr)
         resp = requests.get(req)
         assert resp.ok
         resp_dct = json.loads(resp.text)
