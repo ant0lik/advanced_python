@@ -4,43 +4,51 @@ import requests
 
 
 class Money:
-    """Represent money in various currencies.
-    And perform summing up and conversion."""
+    """Represent money in various currencies."""
 
     def __init__(self, amount, curr='BYN'):
+        """Initialize an amount in given currency."""
         self.amount = amount
         self.curr = curr
 
     def __add__(self, other):
+        """Redefine __add__."""
         other = other.converted_to(self.curr)
         summa = self.amount + other.amount
         return Money(summa, self.curr)
 
     def __radd__(self, other):
+        """Redefine __radd__."""
         if other == 0:
             return self
         else:
             return self.__add__(other)
 
     def __mul__(self, other):
+        """Redefine __mul__."""
         if isinstance(other, Money):
             result = self.amount * other.amount
             return Money(result, self.curr)
         elif isinstance(other, int):
-            result =  other * self.amount
+            result = other * self.amount
             return Money(result, self.curr)
 
     def __rmul__(self, other):
-        result =  other * self.amount
+        """Redefine __rmul__."""
+        result = other * self.amount
         return Money(result, self.curr)
 
     def __str__(self):
+        """Define str representation of the obj."""
         return f'{round(self.amount, 2)} {self.curr}'
 
     def __repr__(self):
+        """Define str representation of the obj."""
+        return f'{round(self.amount, 2)} {self.curr}'
         return f'{round(self.amount, 2)} {self.curr}'
 
     def __to_byn(self):
+        """Convert to BYN."""
         if self.curr == 'BYN':
             return self
         req1 = f'http://www.nbrb.by/API/ExRates/Rates/{self.curr}?ParamMode=2'
@@ -52,6 +60,7 @@ class Money:
         return Money(total, 'BYN')
 
     def converted_to(self, other_curr):
+        """Convert the money to different currencies."""
         if self.curr == other_curr:
             return self
         if other_curr == 'BYN':
@@ -68,9 +77,10 @@ class Money:
         result = amount_in_BYN / rate
         return Money(result, other_curr)
 
+
 x = Money(10, "BYN")
 y = Money(11)
 z = Money(12.34, "EUR")
 print(z + x + y)
-print(sum([x,y,z]))
-print(sum([10*x,y*10,z]))
+print(sum([x, y, z]))
+print(sum([10 * x, y * 10, z]))
