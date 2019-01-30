@@ -4,8 +4,6 @@ import aiohttp
 import asyncio
 import async_timeout
 import os
-import requests
-from threading import Thread
 from time import time as timer
 
 sem = asyncio.Semaphore(3)
@@ -49,4 +47,4 @@ if __name__ == '__main__':
     loop.run_until_complete(
         asyncio.gather(*(main(loop, link) for link in links))
     )
-    print(f"Elapsed time: {timer() - start}")
+    print("Elapsed time: {}".format(timer() - start))

@@ -52,7 +52,7 @@ def main():
     for link in links:
         queue.put(link)
     queue.join()
-    print(f"Elapsed time: {time() - ts}")
+    print("Elapsed time: {}".format(time() - ts))
 
 
 if __name__ == "__main__":
