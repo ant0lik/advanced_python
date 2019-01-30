@@ -1,8 +1,8 @@
 """This script downloads a number of files using asyncio and threads."""
 import aiofiles
 import aiohttp
-import asyncio
 import async_timeout
+import asyncio
 import os
 from time import time as timer
 
