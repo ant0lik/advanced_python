@@ -1,0 +1,4 @@
+[submodule "jenkins"]
+	path = jenkins
+	url = https://github.com/ant0lik/jenkins-git
+	branch = master
